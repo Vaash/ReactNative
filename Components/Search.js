@@ -1,9 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, Button, TextInput, FlatList, Text } from 'react-native'
-import brasseries from "../Helpers/BrasseriesData";
+import { StyleSheet, View, Button, TextInput, FlatList } from 'react-native'
 import BrasseriesItem from "./BrasseriesItem";
 import { searchBreweriesFromApi } from "../API/OpenBreweryDBApi"
-import ActivityIndicator from "react-native-web/src/exports/ActivityIndicator";
 
 class Search extends React.Component {
 
@@ -13,6 +11,9 @@ class Search extends React.Component {
             breweries: [],
         }
         this.searchedText = ""
+    }
+
+    componentDidMount() {
     }
 
     _loadBreweries() {
@@ -28,15 +29,29 @@ class Search extends React.Component {
         this.searchedText = text
     }
 
+    _displayDetailsForBrewery = (id) => {
+        this.props.navigation.navigate("BreweryDetail", {id: id})
+    }
+
     render() {
         return (
             <View style={styles.main_container}>
-                <TextInput onSubmitEditing={() => this._loadBreweries()} onChangeText={(text) => this._searchTextInputChange(text)} style={styles.textInput} placeholder=" Brasseries "/>
-                <Button style={styles.button} title="Search" onPress={() => this._loadBreweries()}/>
+                <TextInput
+                    onSubmitEditing={() => this._loadBreweries()}
+                    onChangeText={(text) => this._searchTextInputChange(text)}
+                    style={styles.textInput}
+                    placeholder=" Brasseries "/>
+                <Button style={styles.button} title="Search"
+                        onPress={() => this._loadBreweries()}
+                />
                 <FlatList
                     data={this.state.breweries}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <BrasseriesItem brasserie={item}/>}
+                    renderItem={({item}) =>
+                        <BrasseriesItem
+                            brasserie={item}
+                            displayDetailsForBrewery={this._displayDetailsForBrewery}
+                        />}
                 />
             </View>
         )

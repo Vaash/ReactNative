@@ -1,11 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
 import Search from './Components/Search'
-import Display from './Components/Display'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer } from "@react-navigation/native";
+import BreweryDetail from "./Components/BreweryDetail";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
     return (
-        <Search/>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="Search"
+                    component={Search}
+                />
+                <Stack.Screen
+                    name="BreweryDetail"
+                    component={BreweryDetail}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
+
+export default App;

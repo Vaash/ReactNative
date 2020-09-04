@@ -1,14 +1,22 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 class BrasseriesItem extends React.Component {
     render() {
-        console.log(this.props)
+        const brewery = this.props.brasserie;
+        const displayDetailsForBrewery = this.props.displayDetailsForBrewery;
         return (
-            <View style={styles.main_container}>
-                <Text style={styles.title_text}>{this.props.brasserie.name}</Text>
-                <Text style={styles.location_text}>{this.props.brasserie.city}, {this.props.brasserie.state}</Text>
-            </View>
+            <TouchableOpacity
+                onPress={() => displayDetailsForBrewery(brewery.id)}
+                style={styles.main_container}>
+                <Text
+                    style={styles.title_text}>{this.props.brasserie.name}
+                </Text>
+                <Text
+                    style={styles.location_text}>{this.props.brasserie.city},
+                    {this.props.brasserie.state}
+                </Text>
+            </TouchableOpacity>
         )
     }
 }
