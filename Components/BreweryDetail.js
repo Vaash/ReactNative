@@ -20,7 +20,7 @@ class BreweryDetail extends React.Component {
     }
 
     render() {
-        this.props.navigation.setOptions({title: this.state.brewery.name})
+        // this.props.navigation.setOptions({title: this.state.brewery.name})
         return (
             <View>
                 <BreweryAdress
