@@ -34,16 +34,21 @@ class Search extends React.Component {
     }
 
     render() {
+        this.props.navigation.setOptions({title: 'Accueil'})
         return (
             <View style={styles.main_container}>
                 <TextInput
                     onSubmitEditing={() => this._loadBreweries()}
                     onChangeText={(text) => this._searchTextInputChange(text)}
                     style={styles.textInput}
-                    placeholder=" Brasseries "/>
-                <Button style={styles.button} title="Search"
-                        onPress={() => this._loadBreweries()}
+                    placeholder=" Brasseries "
                 />
+                <View style={styles.button}>
+                    <Button
+                        title="Search"
+                        onPress={() => this._loadBreweries()}
+                    />
+                </View>
                 <FlatList
                     data={this.state.breweries}
                     keyExtractor={(item) => item.id.toString()}
@@ -60,7 +65,11 @@ class Search extends React.Component {
 
 const styles = StyleSheet.create({
     button: {
-        height: 50,
+        paddingTop: 15,
+        paddingRight: 5,
+        paddingBottom: 15,
+        alignSelf: 'flex-end',
+        width: '50%'
     },
     main_container: {
         marginTop: 20, flex: 1
@@ -71,7 +80,8 @@ const styles = StyleSheet.create({
         height: 50,
         marginBottom: 5,
         marginLeft: 5,
-        marginRight: 5
+        marginRight: 5,
+        padding: 10
     }
 })
 

@@ -21,7 +21,6 @@ class BreweryDetail extends React.Component {
 
     render() {
         this.props.navigation.setOptions({title: this.state.brewery.name})
-        console.log(this.state.brewery)
         return (
             <View>
                 <BreweryAdress
