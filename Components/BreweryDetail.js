@@ -14,13 +14,14 @@ class BreweryDetail extends React.Component {
     }
 
     componentDidMount() {
-        getSelectedBrewery(this.props.route.params.id).then(data => {
-            this.setState({ brewery: data })
-        })
+        getSelectedBrewery(this.props.route.params.id)
+            .then(data => {
+                this.setState({ brewery: data })
+                this.props.navigation.setOptions({title: this.state.brewery.name})
+            })
     }
 
     render() {
-        // this.props.navigation.setOptions({title: this.state.brewery.name})
         return (
             <View>
                 <BreweryAdress

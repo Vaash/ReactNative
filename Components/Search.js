@@ -13,9 +13,6 @@ class Search extends React.Component {
         this.searchedText = ""
     }
 
-    componentDidMount() {
-    }
-
     _loadBreweries() {
         if (this.searchedText.length > 0) {
             searchBreweriesFromApi(this.searchedText)

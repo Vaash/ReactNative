@@ -9,8 +9,7 @@ export function getSelectedBrewery(id) {
     const url='https://api.openbrewerydb.org/breweries/' + id;
     return fetch(url)
         .then((response) => {
-            // console.log(response)
             return response.json()
-        } )
+        })
         .catch((error) => console.log("Something happened, please try again."))
 }
